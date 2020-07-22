@@ -2,6 +2,7 @@
 import os
 import sys
 import codecs
+import re
 
 # USAGE:
 # VTTtoTXT.py filePath.vtt
@@ -17,7 +18,7 @@ with codecs.open(vttFile, 'r', encoding='utf8') as f:
     n = 0
     for line in f:
         n +=1
-        if not line == newLine and not line.startswith('NOTE') and not line.startswith('0') and not n == 1:
+        if not line == newLine and not line.startswith('NOTE') and not line.startswith('0') and not n == 1 and not re.match(r'........-', line):
             if (line.endswith(newLine)):
                 line = line[:-2]
                 if(line.endswith('.')):
